@@ -1,0 +1,56 @@
+name: 'AirWatch Schedule'
+description: 'Schedule the activation of a previously uploaded .apk or .ipa'
+inputs:
+  api_host:
+    description: 'AirWatch API host URL'
+    required: true
+  product_id:
+    description: "AirWatch product ID"
+    required: true
+  organisation_group_id:
+    description: "AirWatch organisation group ID"
+    required: true
+  username:
+    description: 'AirWatch username'
+    required: true
+  password:
+    description: 'AirWatch password'
+    required: true
+  tenant_code:
+    description: "AirWatch tenant code"
+    required: true
+  product_name:
+    description: "The product name used on AirWatch list of products"
+    required: true
+  smartgroup_id:
+    description: "AirWatch ID of the smart group the activation should be scheduled"
+    required: true
+  application_identifier:
+    description: "Application identifier of the .apk or .ipa being uploaded"
+    required: true
+  device_model_id:
+    description: "Device model where the application should be activated on"
+    required: true
+  step_type:
+    description: "The action to be triggered on activation date"
+    required: true
+  application_version:
+    description: "The version of the application being activated"
+    required: true
+  airwatch_application_identifier:
+    description: "The ID given by AirWatch to the application upon upload"
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.api_host }}
+    - ${{ inputs.organisation_group_id }}
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.tenant_code }}
+    - ${{ inputs.application_name }}
+    - ${{ inputs.application_identifier }}
+    - ${{ inputs.application_file_path }}
+    - ${{ inputs.device_type }}
+    - ${{ inputs.device_model_id }}
